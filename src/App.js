@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import cat from './assets/cat.svg';
 import './App.css';
+import CatDataFetch from "./weatherData/CatDataFetch";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="App-header">
+        <img src={cat} className="App-logo" alt="logo" />
+        <h1 className="App-fonts">
+          The data come from CatFact.ninja API
+        </h1>
         <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+            className="App-link"
+            href="https://catfact.ninja/"
+            target="_blank"
+            rel="nofollow"
         >
-          Learn React
+          LINK
         </a>
-      </header>
+
+        <CatDataFetch/>
+
+      </div>
     </div>
   );
 }

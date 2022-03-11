@@ -1,0 +1,13 @@
+.listFont
+{
+    color: #222222;
+    font-size: 15px;
+    font-family: "Century Gothic";
+    text-align: left;
+}
+
+.list{
+    margin-left: 300px;
+    margin-right: 300px;
+    margin-top: 10px;
+}
