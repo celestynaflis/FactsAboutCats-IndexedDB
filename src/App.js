@@ -1,6 +1,6 @@
 import cat from './assets/cat.svg';
 import './App.css';
-import CatDataFetch from "./weatherData/CatDataFetch";
+import CatDataFetch from "./catsData/CatDataFetch";
 
 function App() {
   return (
