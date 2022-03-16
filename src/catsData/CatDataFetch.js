@@ -3,11 +3,21 @@ import {db} from "../db/db";
 import "./CatDataFetch.css"
 import CatFactsList from "../components/CatFactsList";
 
+// const useForceUpdate = ()  => {
+//     const [value, setValue] = useState(0);
+//     return () => setValue((value) => value + 1);
+// }
+
 const CatDataFetch = () =>
 {
+    const [, updateState] = React.useState();
+    const forceUpdate = React.useCallback(() => updateState({}), []);
+
+    // const forceUpdate = useForceUpdate();
 
     const [data, setData] = useState(['']);
     const [factId, setFactId] = useState();
+
 
     const factIdToDeleteHandler = (event) => {
         setFactId(event.target.value);
@@ -21,9 +31,7 @@ const CatDataFetch = () =>
             .then(result => {
                 db.putFactsIntoDB(result);
             });
-
-        window.location.reload();
-
+        forceUpdate();
     }
 
 
@@ -38,7 +46,7 @@ const CatDataFetch = () =>
     const deleteFact = async (number) => {
         const n = parseInt(number);
         await db.facts.where('id').equals(n).delete();
-        window.location.reload();
+        forceUpdate();
     };
 
     useEffect(async ()=>
@@ -102,6 +110,11 @@ const CatDataFetch = () =>
         </input>
     </div>
             <div>
+                <button className="buttonStyle" onClick={forceUpdate}>
+                    <p className="buttonText">
+                        Update
+                    </p>
+                </button>
                 <h1 className="h1">Facts about cats:</h1>
                 <p>
                     {facts}
