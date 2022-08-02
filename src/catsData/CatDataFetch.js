@@ -3,37 +3,22 @@ import {db} from "../db/db";
 import "./CatDataFetch.css"
 import CatFactsList from "../components/CatFactsList";
 
-// const useForceUpdate = ()  => {
-//     const [value, setValue] = useState(0);
-//     return () => setValue((value) => value + 1);
-// }
-
 const CatDataFetch = () =>
 {
-    const [, updateState] = React.useState();
-    const forceUpdate = React.useCallback(() => updateState({}), []);
-
-    // const forceUpdate = useForceUpdate();
-
     const [data, setData] = useState(['']);
     const [factId, setFactId] = useState();
-
 
     const factIdToDeleteHandler = (event) => {
         setFactId(event.target.value);
     };
 
-    const fetchData = async () =>
-    {
-        // await fetch(`${constants.REACT_APP_API_URL}/weather/?q=${city_name}&appid=${constants.REACT_APP_API_KEY}`)
-    await fetch("https://catfact.ninja/fact")
-    .then(res => res.json())
-            .then(result => {
-                db.putFactsIntoDB(result);
-            });
-        forceUpdate();
-    }
-
+    const fetchData = async () => {
+        await fetch("https://catfact.ninja/fact")
+        .then(res => res.json())
+                .then(result => {
+                    db.putFactsIntoDB(result);
+                });
+    };
 
     const getFact = async (number) => {
         return db.facts.get(number);
@@ -46,13 +31,11 @@ const CatDataFetch = () =>
     const deleteFact = async (number) => {
         const n = parseInt(number);
         await db.facts.where('id').equals(n).delete();
-        forceUpdate();
     };
 
-    useEffect(async ()=>
-    {
-        const data = await getFact(1);
-    },[])
+    const deleteAllFacts = async => {
+        return db.facts.clear();
+    }
 
     useEffect(async ()=>
     {
@@ -67,7 +50,7 @@ const CatDataFetch = () =>
     },[])
 
 
-    const showFacts = data.map((item) => {
+    const factsAboutCats = data.map((item) => {
             return (
                 <div>
                     <CatFactsList
@@ -76,12 +59,6 @@ const CatDataFetch = () =>
                 </div>
             );
     });
-
-    const facts = (
-        <div>
-            {showFacts}
-        </div>
-    );
 
 
     return(
@@ -106,25 +83,21 @@ const CatDataFetch = () =>
             min={1}
             max={1000}
         >
-
         </input>
+        <button className="buttonStyle" onClick={deleteAllFacts}>
+            <p className="buttonText">
+                Delete all
+            </p>
+        </button>
     </div>
             <div>
-                <button className="buttonStyle" onClick={forceUpdate}>
-                    <p className="buttonText">
-                        Update
-                    </p>
-                </button>
                 <h1 className="h1">Facts about cats:</h1>
-                <p>
-                    {facts}
-                </p>
+                <div>
+                    {factsAboutCats}
+                </div>
 
             </div>
-
         </>
-
-
     );
 }
 

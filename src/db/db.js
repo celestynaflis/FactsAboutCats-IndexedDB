@@ -25,9 +25,6 @@ export class GenerateDexieClass extends Dexie {
             console.log(err);
         }
     };
-
-    //zaimplementuj read - wczytywanie w apce
-    //zaimplementuj usuwanie konkretnego elementu z bazy
 }
 
 export const db = new GenerateDexieClass();
