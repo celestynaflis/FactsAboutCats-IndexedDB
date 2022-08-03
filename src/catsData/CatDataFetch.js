@@ -5,19 +5,23 @@ import CatFactsList from "../components/CatFactsList";
 
 const CatDataFetch = () =>
 {
-    const [data, setData] = useState(['']);
+    const [dbData, setDbData] = useState(['']);
     const [factId, setFactId] = useState();
+
+    useEffect(async ()=>
+    {
+        const data = await getFacts();
+        let facts = [];
+        for (let i =0; i<data.length; i++)
+        {
+            let numberedFact = (data[i].id) + ". " + data[i].fact;
+            facts.push(numberedFact);
+        }
+        setDbData(facts);
+    },[]);
 
     const factIdToDeleteHandler = (event) => {
         setFactId(event.target.value);
-    };
-
-    const fetchData = async () => {
-        await fetch("https://catfact.ninja/fact")
-        .then(res => res.json())
-                .then(result => {
-                    db.putFactsIntoDB(result);
-                });
     };
 
     const getFact = async (number) => {
@@ -25,7 +29,7 @@ const CatDataFetch = () =>
     };
 
     const getFacts = async () => {
-      return db.facts.toArray();
+        return db.facts.toArray();
     };
 
     const deleteFact = async (number) => {
@@ -37,20 +41,14 @@ const CatDataFetch = () =>
         return db.facts.clear();
     }
 
-    useEffect(async ()=>
-    {
-        const data = await getFacts();
-        let facts = [];
-        for (let i =0; i<data.length; i++)
-        {
-            let numberedFact = (data[i].id) + ". " + data[i].fact;
-            facts.push(numberedFact);
-        }
-        setData(facts);
-    },[])
+    const fetchData = async() => {
+        const  response = await fetch("https://catfact.ninja/fact");
+        const catFact = await response.json();
+        await db.putFactsIntoDB(catFact);
+        return catFact;
+    }
 
-
-    const factsAboutCats = data.map((item) => {
+    const factsAboutCats = dbData.map((item) => {
             return (
                 <div>
                     <CatFactsList
