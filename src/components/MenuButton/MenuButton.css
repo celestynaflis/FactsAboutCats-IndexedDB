@@ -1,0 +1,23 @@
+.buttonStyle {
+    background-color: #AAD5DB;
+    border-radius: 100px;
+    border: none;
+    margin:20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.buttonText {
+    font-size: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: "Century Gothic";
+    font-weight: bold;
+    color: #222222;
+}
+
+.buttonStyle:hover {
+    background-color: lightskyblue;
+}

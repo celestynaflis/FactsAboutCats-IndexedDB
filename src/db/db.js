@@ -1,22 +1,13 @@
-import Dexie, { Table } from 'dexie';
-
+import Dexie from 'dexie';
 
 export class GenerateDexieClass extends Dexie {
-
     constructor() {
         super('db');
 
         this.version(1).stores({
-            facts:
-                '++id, fact, length',
-            notSentFacts:
-            'id, fact, length',
+            facts: '++id, fact, length, id',
         });
     }
-
-    isEmpty = async () => {
-        return (await this.facts.count()) === 0;
-    };
 
     putFactsIntoDB = async (facts) => {
         try {

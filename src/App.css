@@ -1,32 +1,32 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-logo {
-  height: 30vmin;
-  pointer-events: none;
-  padding-top: 40px;
+    height: 30vmin;
+    pointer-events: none;
+    padding-top: 40px;
 }
 
 .App-header {
-  background-color: whitesmoke;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: "Century Gothic";
+    background-color: whitesmoke;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Century Gothic";
 
 }
 
 .App-fonts {
-  font-size: calc(10px + 2vmin);
-  color: #222222;
-  padding-top: 20px;
+    font-size: calc(10px + 2vmin);
+    color: #222222;
+    padding-top: 20px;
 }
 
 .App-link {
-  font-size: calc(10px + 2vmin);
-  color: #AAD5DB;
+    font-size: calc(10px + 2vmin);
+    color: #AAD5DB;
 }
 
