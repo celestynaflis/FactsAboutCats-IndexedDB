@@ -27,7 +27,7 @@ Clears whole DB.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### To view and test clone repository, instal dependencies & use `npm start` script
+### To view and test clone repository, instal dependencies with `npm i` & use `npm start` script
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
